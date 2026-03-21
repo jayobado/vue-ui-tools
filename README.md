@@ -1,4 +1,4 @@
-# vue-tools
+# vue-ui-tools-tools
 
 A lightweight Vue 3 runtime library for building UIs in pure TypeScript. Write components using typed element factories and `createVNode` — no templates, no JSX, no build step required.
 
@@ -33,7 +33,7 @@ A lightweight Vue 3 runtime library for building UIs in pure TypeScript. Write c
 | Bun | ✓ | Works natively |
 | Node 18+ | ✓ | Works with tsx or a bundler |
 
-> `vue-ui` only depends on Vue 3. It runs anywhere Vue 3 runs.
+> `vue-ui-tools` only depends on Vue 3. It runs anywhere Vue 3 runs.
 
 ## Installation
 
@@ -43,7 +43,7 @@ Add to your project's `deno.json`:
 ```json
 {
   "imports": {
-    "@vue-ui": "https://raw.githubusercontent.com/yourname/vue-ui/v0.1.0/mod.ts",
+    "@vue-ui-tools": "https://raw.githubusercontent.com/jayobado/vue-ui-tools/v0.1.0/mod.ts",
     "vue":     "https://esm.sh/vue@3.5.13"
   }
 }
@@ -54,7 +54,7 @@ Set your GitHub token for private repo access:
 export DENO_AUTH_TOKENS="ghp_yourtoken@raw.githubusercontent.com"
 ```
 
-> **Important:** Always declare `vue` in your own `deno.json` at the same URL used by `vue-ui`. This ensures a single Vue instance is shared. Two Vue instances will break `inject`, `provide`, and reactivity across component boundaries.
+> **Important:** Always declare `vue` in your own `deno.json` at the same URL used by `vue-ui-tools`. This ensures a single Vue instance is shared. Two Vue instances will break `inject`, `provide`, and reactivity across component boundaries.
 
 For SSR also add:
 ```json
@@ -74,7 +74,7 @@ The `?external=vue` flag prevents esm.sh from bundling a second copy of Vue insi
 {
   "imports": {
     "vue":     "https://esm.sh/vue@3.5.13",
-    "@vue-ui": "https://raw.githubusercontent.com/yourname/vue-ui/v0.1.0/mod.ts"
+    "@vue-ui-tools": "https://raw.githubusercontent.com/jayobado/vue-ui-tools/v0.1.0/mod.ts"
   }
 }
 </script>
@@ -89,13 +89,13 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   resolve: {
     alias: {
-      '@vue-ui': '/path/to/vue-ui/mod.ts',
+      '@vue-ui-tools': '/path/to/vue-ui-tools/mod.ts',
     },
   },
 })
 ```
 ```typescript
-import { div, span, defineTS, css } from '@vue-ui'
+import { div, span, defineTS, css } from '@vue-ui-tools'
 ```
 
 ### esbuild
@@ -107,7 +107,7 @@ await build({
   bundle:      true,
   outfile:     'dist/app.js',
   alias: {
-    '@vue-ui': './path/to/vue-ui/mod.ts',
+    '@vue-ui-tools': './path/to/vue-ui-tools/mod.ts',
   },
 })
 ```
@@ -115,21 +115,21 @@ await build({
 ### Node (18+)
 ```bash
 npm install vue
-npm install ./path/to/vue-ui   # local
+npm install ./path/to/vue-ui-tools   # local
 # or if published to npm:
-npm install @yourname/vue-ui
+npm install @jayobado/vue-ui-tools
 ```
 ```typescript
-import { div, defineTS } from '@yourname/vue-ui'
+import { div, defineTS } from '@jayobado/vue-ui-tools'
 ```
 
 ### Bun
 ```bash
 bun add vue
-bun add ./path/to/vue-ui
+bun add ./path/to/vue-ui-tools
 ```
 ```typescript
-import { div, defineTS } from 'vue-ui'
+import { div, defineTS } from 'vue-ui-tools'
 ```
 
 ---
@@ -141,7 +141,7 @@ import {
   div, h1, span, button, input,
   css, staticCss,
   h,
-} from '@vue-ui'
+} from '@vue-ui-tools'
 import { createApp, ref } from 'vue'
 
 const Badge = defineFn({
@@ -190,7 +190,7 @@ import {
   form, label, input, button, select, option, textarea, fieldset,
   img, a, hr, br,
   table, thead, tbody, tr, th, td,
-} from '@vue-ui'
+} from '@vue-ui-tools'
 
 div(null, 'Hello')
 div({ class: 'container', id: 'main' }, 'Hello')
@@ -236,7 +236,7 @@ All element factories extend `ElProps`:
 
 Stateless and presentational. No reactive state, no lifecycle hooks.
 ```typescript
-import { defineFn, span } from '@vue-ui'
+import { defineFn, span } from '@vue-ui-tools'
 import type { PropType }   from 'vue'
 
 type Variant = 'success' | 'warning' | 'danger' | 'info'
@@ -259,7 +259,7 @@ h(StatusBadge, { label: 'Active', variant: 'success' })
 
 Full Vue component with `setup()`, reactive state, and lifecycle hooks.
 ```typescript
-import { defineTS, div, span, button } from '@vue-ui'
+import { defineTS, div, span, button } from '@vue-ui-tools'
 import { ref, computed, onMounted }     from 'vue'
 
 const DataTable = defineTS({
@@ -298,7 +298,7 @@ const DataTable = defineTS({
 
 ### `h()` — typed component instantiation
 ```typescript
-import { h } from '@vue-ui'
+import { h } from '@vue-ui-tools'
 
 h(StatusBadge, { label: 'OK', variant: 'success' })
 h(DataTable,   { title: 'Users', pageSize: 20 })
@@ -311,7 +311,7 @@ Generates atomic class names from style objects and injects rules into a `<style
 
 ### `css()` — dynamic styles
 ```typescript
-import { css } from '@vue-ui'
+import { css } from '@vue-ui-tools'
 
 const className = css({
   display:      'flex',
@@ -337,7 +337,7 @@ div({ class: className }, 'Styled')
 
 ### `staticCss()` — module-level styles
 ```typescript
-import { staticCss } from '@vue-ui'
+import { staticCss } from '@vue-ui-tools'
 
 // Evaluated once on import
 const card = staticCss({
@@ -352,7 +352,7 @@ div({ class: card }, 'Card content')
 
 ### SSR usage
 ```typescript
-import { collectStyles, resetStyles } from '@vue-ui'
+import { collectStyles, resetStyles } from '@vue-ui-tools'
 import { renderToString }             from '@vue/server-renderer'
 
 resetStyles() // isolate CSS per request
@@ -368,7 +368,7 @@ return `<!DOCTYPE html>
 
 ## Memoisation
 ```typescript
-import { withMemo, createMemoCache, defineTS, div, span } from '@vue-ui'
+import { withMemo, createMemoCache, defineTS, div, span } from '@vue-ui-tools'
 
 const cache = createMemoCache(1)
 
