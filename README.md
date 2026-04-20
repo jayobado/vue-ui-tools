@@ -17,11 +17,11 @@ A lightweight Vue 3 runtime library for building UIs in pure TypeScript. Write c
 
 ## Styling
 
-vue-toolkit is style-agnostic. It does not include a CSS engine — use any styling approach you prefer: Tailwind, vanilla CSS, CSS modules, or [`@jayobado/css`](https://github.com/jayobado/css) for atomic CSS-in-JS. All components accept `class` strings; the consumer is responsible for generating them.
+vue-toolkit is style-agnostic. It does not include a CSS engine — use any styling approach you prefer: Tailwind, vanilla CSS, CSS modules, or [`@jayobado/lolo-css`](https://github.com/jayobado/lolo-css) for atomic CSS-in-JS. All components accept `class` strings; the consumer is responsible for generating them.
 
 ```typescript
-// Example with @jayobado/css
-import { css } from '@jayobado/css'
+// Example with @jayobado/lolo-css
+import { css } from '@jayobado/lolo-css'
 import { div } from '@jayobado/vue-toolkit'
 
 div({ class: css({ display: 'flex', gap: 16 }) }, 'Hello')
@@ -1156,7 +1156,7 @@ Placement options: `'top'` | `'bottom'` | `'left'` | `'right'` — defaults to `
 
 ### `enter` / `leave` — CSS transition helpers
 
-Apply enter/leave transitions using CSS classes. Works with any class source — Tailwind, CSS modules, `@jayobado/css`, or plain CSS.
+Apply enter/leave transitions using CSS classes. Works with any class source — Tailwind, CSS modules, `@jayobado/lolo-css`, or plain CSS.
 
 ```typescript
 import { enter, leave } from '@jayobado/vue-toolkit/primitives'
