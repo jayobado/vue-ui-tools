@@ -1,3 +1,9 @@
+/**
+ * @packageDocumentation
+ * @module @jayobado/vue-toolkit/primitives
+ * @description A collection of low-level utilities and primitives for building Vue applications.
+ */
+
 export { createPortal } from './portal.ts'
 
 export { useClickOutside } from './click-outside.ts'

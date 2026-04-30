@@ -1,3 +1,9 @@
+/**
+ * @packageDocumentation
+ * @module @jayobado/vue-toolkit/form
+ * @description A collection of utilities for managing form state in Vue applications.
+ */
+
 export { useSubmit } from './submit.ts'
 export type { SubmitOptions, SubmitRefs, SubmitReturn } from './submit.ts'
 
