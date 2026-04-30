@@ -6,8 +6,8 @@ A lightweight Vue 3 runtime library for building UIs in pure TypeScript. Write c
 
 - **Typed element factories** — `div`, `span`, `button`, `input`, `table` etc. that produce Vue VNodes with full TypeScript prop checking
 - **`defineFn`** — stateless functional components with typed props and a render function
-- **`defineTS`** — stateful components with `setup()`, reactive state, and lifecycle hooks
-- **`h()`** — typed component instantiation with prop inference
+- **`define`** — stateful components with `setup()`, reactive state, and lifecycle hooks
+- **`html()`** — typed component instantiation with prop inference
 - **`withMemo` / `createMemoCache`** — fine-grained memoisation for expensive render subtrees
 - **Form handling** — submission and validation composables using any Standard Schema library (`@jayobado/vue-toolkit/form`)
 - **Data fetching** — `useQuery` (with optional caching) and `useMutation` composables with reactive re-fetching and retry (`@jayobado/vue-toolkit/query`)
@@ -84,7 +84,7 @@ npm install @jayobado/vue-toolkit vue
 ```
 
 ```typescript
-import { div, defineTS } from '@jayobado/vue-toolkit'
+import { div, define } from '@jayobado/vue-toolkit'
 ```
 
 ### Vite
@@ -108,7 +108,7 @@ export default defineConfig({
 
 ```typescript
 import {
-  defineTS, defineFn,
+  define, defineFn,
   div, h1, span, button, input,
   h,
 } from '@jayobado/vue-toolkit'
@@ -125,7 +125,7 @@ const Badge = defineFn({
   },
 })
 
-const Counter = defineTS({
+const Counter = define({
   name: 'Counter',
   props: {
     initial: { type: Number, default: 0 },
@@ -224,15 +224,15 @@ const StatusBadge = defineFn({
 h(StatusBadge, { label: 'Active', variant: 'success' })
 ```
 
-### `defineTS` — stateful component
+### `define` — stateful component
 
 Full Vue component with `setup()`, reactive state, and lifecycle hooks.
 
 ```typescript
-import { defineTS, div, span, button } from '@jayobado/vue-toolkit'
+import { define, div, span, button } from '@jayobado/vue-toolkit'
 import { ref, computed, onMounted } from 'vue'
 
-const UserList = defineTS({
+const UserList = define({
   name: 'UserList',
   props: {
     title:    { type: String, required: true as const },
@@ -266,7 +266,7 @@ const UserList = defineTS({
 })
 ```
 
-### `h()` — typed component instantiation
+### `html()` — typed component instantiation
 
 ```typescript
 import { h } from '@jayobado/vue-toolkit'
@@ -279,11 +279,11 @@ h(Card,        { title: 'Details' }, div(null, 'Content'))
 ## Memoisation
 
 ```typescript
-import { withMemo, createMemoCache, defineTS, div, span } from '@jayobado/vue-toolkit'
+import { withMemo, createMemoCache, define, div, span } from '@jayobado/vue-toolkit'
 
 const cache = createMemoCache(1)
 
-const ExpensiveList = defineTS({
+const ExpensiveList = define({
   name: 'ExpensiveList',
   props: {
     items: { type: Array,  required: true as const },
@@ -362,12 +362,12 @@ const { form, submit, submitting, submitted, errors } = useSubmit(
 #### Full component example
 
 ```typescript
-import { defineTS, div, input, button, span } from '@jayobado/vue-toolkit'
+import { define, div, input, button, span } from '@jayobado/vue-toolkit'
 import { useSubmit, flatten } from '@jayobado/vue-toolkit/form'
 import { reactive } from 'vue'
 import * as v from 'valibot'
 
-const LoginForm = defineTS({
+const LoginForm = define({
   name: 'LoginForm',
   props: {},
   setup() {
@@ -443,7 +443,7 @@ const { submit, submitting } = useSubmit(
 const { submit, submitting } = useSubmit(
   {},
   async () => {
-    await api.refresh()
+    await api.refreshtml()
   },
 )
 ```
@@ -805,10 +805,10 @@ const { open, close, isOpen, contentEl } = useModal({
 Append your content to `contentEl` after opening:
 
 ```typescript
-import { defineTS, div, h2, p, button } from '@jayobado/vue-toolkit'
+import { define, div, h2, p, button } from '@jayobado/vue-toolkit'
 import { useModal } from '@jayobado/vue-toolkit/components'
 
-const ConfirmDialog = defineTS({
+const ConfirmDialog = define({
   name: 'ConfirmDialog',
   props: {},
   setup() {
@@ -1078,7 +1078,7 @@ remove()
 
 ### `useClickOutside` — detect clicks outside an element
 
-Uses two-phase detection (pointerdown + click) with `composedPath()` for shadow DOM support. Listens in capture phase for reliability. Supports an `ignore` list of refs or CSS selectors.
+Uses two-phase detection (pointerdown + click) with `composedPathtml()` for shadow DOM support. Listens in capture phase for reliability. Supports an `ignore` list of refs or CSS selectors.
 
 ```typescript
 import { useClickOutside } from '@jayobado/vue-toolkit/primitives'

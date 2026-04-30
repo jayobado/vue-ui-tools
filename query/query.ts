@@ -3,7 +3,27 @@ import type { MaybeRefOrGetter, Ref, WatchOptionsBase } from 'vue'
 import { getOrCreate, release, invalidate as invalidateCache } from './cache.ts'
 import type { CacheOptions } from './cache.ts'
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+/**
+ * A composable function that provides data fetching capabilities with support for caching, retries, and reactive query keys.
+ * 
+ * It allows you to define a query function that fetches data, along with options for caching the results based on a key,
+ * controlling when the query is enabled, and handling errors with optional retry logic.
+ * 
+ * The function returns reactive references for the query data, loading state, and any errors, 
+ * as well as methods to refetch and invalidate the cache.
+ * 
+ * @interface QueryOptions
+ * @interface QueryReturn
+ * @function useQuery
+ * @param fn - An asynchronous function that fetches the data for the query.
+ * @param options - An object containing configuration options for caching, retries, and query behavior.
+ * 
+ * @param watchOptions - Optional Vue watch options to control the behavior of the reactive effect that 
+ * manages the query execution.
+ * 
+ * @returns An object containing reactive references to the query data, loading state, error state, 
+ * and methods for refetching and invalidating the cache.
+ */
 
 export interface QueryOptions extends CacheOptions {
 	key?: MaybeRefOrGetter<unknown[]>

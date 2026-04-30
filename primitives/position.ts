@@ -1,3 +1,8 @@
+/**
+ * A utility function to compute the optimal position of a floating element (like a tooltip or 
+ * dropdown) relative to a trigger element, taking into account the viewport boundaries and preferred placement.
+ */
+
 export type Placement = 'top' | 'bottom' | 'left' | 'right'
 
 export interface PositionOptions {

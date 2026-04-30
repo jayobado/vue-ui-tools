@@ -1,6 +1,18 @@
 import { ref, computed } from 'vue'
 import type { Ref, ComputedRef } from 'vue'
 
+
+/**
+ * A composable function that provides pagination state management for a list of items.
+ * 
+ * It allows you to easily track the current page, page size, total number of items, and provides utility functions 
+ * to navigate between pages and calculate pagination details like total pages and whether there are next or previous pages.
+ * 
+ * The function returns reactive references for the pagination state and computed properties for derived values.
+ * @param options - An optional object to initialize the pagination state with default values for page, pageSize, and total.
+ * @returns An object containing reactive references for pagination state and utility functions for navigation.
+ */
+
 export interface PaginationOptions {
 	page?: number
 	pageSize?: number

@@ -1,3 +1,18 @@
+/***
+ * A utility module for handling CSS transitions in Vue.js applications. 
+ * It provides functions to manage the entering and leaving of elements with specified transition classes. 
+ * The `enter` function applies the appropriate classes for the entering transition, 
+ * while the `leave` function does the same for the leaving transition. Both functions return a promise that resolves 
+ * when the transition is complete, allowing for asynchronous handling of transitions in Vue components.
+ * 
+ * @interface TransitionClasses
+ * @function enter
+ * @function leave
+ * @param el - The HTML element to which the transition classes will be applied.
+ * @param classes - An object containing the CSS classes for the transition states (entering and leaving).
+ * @returns A promise that resolves when the transition is complete.
+ */
+
 export interface TransitionClasses {
 	enterFrom?: string
 	enterActive?: string

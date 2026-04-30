@@ -1,6 +1,22 @@
 import { enter, leave } from '../primitives/transition.ts'
 import type { TransitionClasses } from '../primitives/transition.ts'
 
+/**
+ * A simple toast notification system for Vue. It provides a `useToaster` composable function that allows you to 
+ * show toast messages with various options such as duration, variant, and custom classes. 
+ * 
+ * The toasts are displayed in a container that can be styled and positioned as needed. 
+ * Each toast can be dismissed by clicking on it, and it will automatically disappear after the specified duration.
+ * 
+ * @interface ToastOptions
+ * @interface ToasterOptions
+ * @interface Toaster
+ * @type ToastVariant
+ * @function useToaster
+ * @param options - An optional object containing configuration options for the toaster.
+ * @returns An object with a `show` method to display toast messages and a `dispose` method to clean up the toaster.
+ */
+
 export type ToastVariant = 'info' | 'success' | 'warning' | 'error'
 
 export interface ToastOptions {

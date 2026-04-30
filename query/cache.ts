@@ -1,5 +1,21 @@
 import { ref, type Ref } from 'vue'
 
+
+/** 
+ * A simple in-memory cache implementation for asynchronous data fetching, designed to work with Vue's reactivity system.
+ * 
+ * The cache allows you to store the results of asynchronous operations (like API calls) 
+ * and automatically manages their loading and error states. 
+ * 
+ * It supports features like stale data management, garbage collection of unused entries, and manual invalidation.
+ * 
+ * The main functions are:
+ * - `getOrCreate`: Retrieves a cache entry for a given key or creates it if it doesn't exist, using a provided async function to fetch the data.
+ * - `release`: Decrements the subscriber count for a cache entry and schedules it for garbage collection if there are no more subscribers.
+ * - `invalidate`: Marks a cache entry as stale, causing it to be revalidated on the next access.
+ * - `invalidatePrefix`: Invalidates all cache entries that match a given key prefix.
+ */
+
 interface CacheEntry<T = unknown> {
 	data: Ref<T | undefined>
 	error: Ref<Error | undefined>

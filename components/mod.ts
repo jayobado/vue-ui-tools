@@ -1,3 +1,12 @@
+/**
+ * This module serves as the main entry point for the components in the Vue Toolkit library. 
+ * It exports all the components and their associated types, allowing users to import them from a single location. 
+ * Each component is defined in its own file, and this module re-exports them for convenience.
+ * 
+ * The components included in this module are:
+ * - `formField`: A simple form field component that accepts a label, an optional name for the input, an optional error message, and a required flag.
+ * - `formGroup`: A simple form group component that accepts an optional legend and a class for styling
+ */
 export { formField } from './form-field.ts'
 export type { FormFieldProps } from './form-field.ts'
 

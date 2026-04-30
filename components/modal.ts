@@ -6,6 +6,19 @@ import { useScrollLock } from '../primitives/scroll-lock.ts'
 import { enter, leave } from '../primitives/transition.ts'
 import type { TransitionClasses } from '../primitives/transition.ts'
 
+/**
+ * A composable function that provides modal dialog functionality. 
+ * It manages the state of the modal, handles opening and closing the dialog, and provides support for features 
+ * such as backdrop, focus trapping, scroll locking, and transitions. 
+ * The modal can be customized with various options, including classes for styling, behavior on backdrop click and 
+ * escape key press, and callbacks for open and close events.
+ * 
+ * @interface ModalOptions
+ * @interface ModalReturn
+ * @function useModal
+ * @param options - An optional object containing configuration options for the modal dialog.
+ * @returns An object with methods to open and close the modal, a reactive reference to the open state, and references to the backdrop and content elements.
+ */
 export interface ModalOptions {
 	class?: string
 	backdropClass?: string

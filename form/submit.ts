@@ -4,8 +4,14 @@ import type { MaybeRefOrGetter, Ref } from 'vue'
 
 import type { ErrorsFormatter, StandardErrors } from './errors.ts'
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
+/***
+ * 
+ * A composable function that provides form submission handling with optional validation using a standardized schema.
+ * It manages the submission state, handles form validation using a provided schema, 
+ * and allows for custom error formatting and handling.
+ * The function supports both synchronous and asynchronous submission handlers, 
+ * and can be used with or without a validation schema.
+ */
 export interface SubmitRefs<TErrors> {
 	form?: Ref<HTMLFormElement | undefined>
 	submitting?: Ref<boolean>

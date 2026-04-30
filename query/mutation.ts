@@ -1,7 +1,23 @@
 import { ref } from "vue"
 import type { Ref } from "vue"
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+/**
+ * A composable function that provides a standardized way to perform mutations 
+ * (e.g., API calls) with built-in support for loading state, error handling, and retries.
+ * 
+ * It allows you to easily manage the state of an asynchronous operation, including tracking the result, 
+ * any errors that occur, and whether the operation is currently in progress.
+ * 
+ * The function also supports configurable retry logic and lifecycle callbacks for success, error, and settled states.
+ * 
+ * 
+ * @typeParam TArgs - The type of arguments that the mutation function accepts.
+ * @typeParam TResult - The type of the result returned by the mutation function.
+ * @param fn - The asynchronous function that performs the mutation (e.g., an API call).
+ * @param options - Optional configuration for retries, callbacks, and error handling.
+ * @returns An object containing the mutate function to trigger the mutation, reactive references for data, error, 
+ * and loading state, and a reset function to clear the state.
+ */
 
 export interface MutationOptions<TResult> {
 	retry?: number

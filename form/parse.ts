@@ -4,7 +4,21 @@ import type { MaybeRefOrGetter, Ref, WatchOptionsBase } from 'vue'
 
 import type { ErrorsFormatter, StandardErrors } from './errors.ts'
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+/**
+ * A composable function that provides parsing and validation functionality for form inputs using a standardized schema.
+ * It takes an input value and a schema, validates the input against the schema, and returns the validation result, 
+ * the parsed output, and any formatted errors.
+ * The function supports both synchronous and asynchronous validation, and allows for custom error 
+ * formatting through the `formatErrors` option.
+ * 
+ * @interface ParseOptions
+ * @interface ParseReturn
+ * @function useParse
+ * @param options - An object containing configuration options for parsing and validation, including the input value, schema, and error formatting function.
+ * @param watchOptions - Optional Vue watch options to control the behavior of the reactive effect that performs validation.
+ * @returns An object containing reactive references to the validation result, parsed output, and formatted errors.
+ */
+
 
 export interface ParseOptions<TSchema extends StandardSchemaV1, TErrors> {
 	input?: MaybeRefOrGetter<unknown>

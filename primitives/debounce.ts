@@ -1,6 +1,19 @@
 import { ref, watch, onScopeDispose, toValue } from 'vue'
 import type { MaybeRefOrGetter, Ref } from 'vue'
 
+/**
+ * A composable function that provides a debounced reactive value.
+ * 
+ * It allows you to create a reactive value that updates only after a specified delay, 
+ * preventing rapid changes from triggering unnecessary updates.
+ * 
+ * The function also provides a dispose method to clean up any timers when the component is unmounted or the scope is disposed.
+ * 
+ * @param source - A reactive reference or getter function to debounce.
+ * @param delay - The debounce delay in milliseconds. Default is 300ms.
+ * @returns An object containing the debounced value and a dispose function.
+ */
+
 export interface DebounceValueReturn<T> {
 	value: Ref<T>
 	dispose: () => void

@@ -7,6 +7,12 @@ import type { Placement } from '../primitives/position.ts'
 import { enter, leave } from '../primitives/transition.ts'
 import type { TransitionClasses } from '../primitives/transition.ts'
 
+/**
+ * A composable function that provides dropdown menu functionality. 
+ * It manages the state of the dropdown, handles opening and closing the menu, and provides keyboard navigation support. 
+ * The dropdown is positioned relative to a trigger element, and it can be customized with various options such as placement, 
+ * offset, and transition classes.
+ */
 export interface DropdownItem {
 	label: string
 	value?: string

@@ -1,6 +1,15 @@
 import { ref, computed } from 'vue'
 import type { Ref, ComputedRef } from 'vue'
 
+/**
+ * A composable function that provides a reactive selection mechanism for managing a set of selected items.
+ * It allows you to easily track which items are selected, toggle their selection state, and perform bulk operations 
+ * like selecting all or clearing the selection.
+ * The function returns a set of utilities for working with the selection state, including methods to check if an 
+ * item is selected, toggle selection, and retrieve the count of selected items.
+ * @typeParam T - The type of items being selected.
+ * @returns An object containing the selection state and utility functions for managing the selection.
+ */
 export interface SelectionReturn<T> {
 	selected: Ref<Set<T>>
 	isSelected: (item: T) => boolean

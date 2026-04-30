@@ -33,6 +33,10 @@ type RequiredKeys<S> = {
 
 type OptionalKeys<S> = Exclude<keyof S, RequiredKeys<S>>
 
+/**
+ * Normalizes a PropsSchema into a type where required props are non-optional and optional props are optional. T
+ * his is the type that will be used for the props argument in the render and setup functions.
+ */
 export type NormalizedProps<S extends PropsSchema<Record<string, unknown>>> = {
 	[K in RequiredKeys<S>]: S[K] extends PropDescriptor<infer T> ? T : never
 } & {
@@ -46,8 +50,14 @@ type RawSetup = (
 	ctx: SetupContext
 ) => () => VNode | null
 
-// ─── defineFn ─────────────────────────────────────────────────────────────────
-
+/**
+ * 
+ * Defines a functional component with a props schema and a render function. The props schema is used to infer the types of the props in the render function, and also to generate the runtime prop validation for Vue.
+ * 
+ * @param config 
+ * @returns 
+ * 
+ */
 export function defineFn<S extends PropsSchema<Record<string, unknown>>>(config: {
 	name?: string
 	props: S
@@ -72,9 +82,16 @@ export function defineFn<S extends PropsSchema<Record<string, unknown>>>(config:
 	return markRaw(component)
 }
 
-// ─── defineTS ─────────────────────────────────────────────────────────────────
-
-export function defineTS<S extends PropsSchema<Record<string, unknown>>>(config: {
+/**
+ * Defines a component with a props schema and a setup function. 
+ * The props schema is used to infer the types of the props in the setup function, 
+ * and also to generate the runtime prop validation for Vue.
+ * 
+ * @param config 
+ * @returns 
+ * 
+ */
+export function define<S extends PropsSchema<Record<string, unknown>>>(config: {
 	name: string
 	props: S
 	setup: (
@@ -82,8 +99,6 @@ export function defineTS<S extends PropsSchema<Record<string, unknown>>>(config:
 		ctx: SetupContext
 	) => () => VNode | null
 }): Component {
-	// Build the options object as unknown first so TypeScript does not
-	// try to match our PropsSchema against defineComponent's overloads.
 	const options: unknown = {
 		name: config.name,
 		props: Object.fromEntries(
@@ -103,6 +118,17 @@ interface MemoVNode extends VNode {
 	_memo?: unknown[]
 }
 
+/**
+ * A helper function for memoizing VNodes based on dependencies. 
+ * It checks if the cached VNode is still valid by comparing the dependencies, and if so, returns the cached VNode. 
+ * Otherwise, it calls the render function to create a new VNode, caches it, and returns it.
+ * 
+ * @param deps - An array of dependencies that the memoized VNode depends on.
+ * @param render - A function that returns a VNode to be memoized.
+ * @param cache - An array used to store cached VNodes. The index parameter specifies where in the cache to store the new VNode.
+ * @param index - The index in the cache array where the new VNode should be stored.
+ * @returns A memoized VNode based on the provided dependencies and render function.
+ */
 export function withMemo<T extends MemoVNode>(
 	deps: unknown[],
 	render: () => T,
@@ -126,6 +152,14 @@ function isMemoSame(cached: MemoVNode, deps: unknown[]): boolean {
 	return true
 }
 
+/**
+ * Creates a memoization cache for VNodes. The cache is an array of a specified size, initialized with undefined values. 
+ * The array is marked as raw to prevent Vue from making it reactive, 
+ * which is important for performance when using it as a memoization cache.
+ * 
+ * @param size - The size of the memoization cache, i.e., the number of VNodes that can be cached.
+ * @returns An array that can be used as a memoization cache for VNodes.
+ */
 export function createMemoCache(size: number): (MemoVNode | undefined)[] {
 	return markRaw(new Array<MemoVNode | undefined>(size).fill(undefined))
 }
@@ -167,7 +201,18 @@ function normaliseChildren(
 	return children as Record<string, () => VNode | VNode[] | null>
 }
 
-export function h<C>(
+/**
+ * A helper function for creating VNodes with type inference for component props. 
+ * It takes a component, props, and children, and returns a VNode. 
+ * The props are typed based on the component's prop definitions, and the children can be a string, 
+ * a VNode, an array of VNodes, or an object representing slots.
+ * 
+ * @param component - The component to create a VNode for. This can be a functional component or a class-based component.
+ * @param props - The props to pass to the component. The type of the props is inferred from the component's prop definitions.
+ * @param children - The children to pass to the component. This can be a string, a VNode, an array of VNodes, or an object representing slots.
+ * @returns A VNode representing the rendered component with the specified props and children.
+ */
+export function html<C>(
 	component: C,
 	props?: (ExtractComponentProps<C> & VNodeProps) | null,
 	children?:

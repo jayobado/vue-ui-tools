@@ -1,5 +1,13 @@
 import { render, type VNode } from 'vue'
 
+/**
+ * A utility function to create a portal, rendering a Vue component into a specified DOM element.
+ * 
+ * @param vnode 
+ * @param target 
+ * @returns 
+ */
+
 export function createPortal(
 	vnode: VNode,
 	target: HTMLElement = document.body,

@@ -1,5 +1,8 @@
 import { createVNode, type VNode, type VNodeArrayChildren } from 'vue'
 
+/**
+ * A simple form group component for Vue. It accepts an optional legend and a class for styling.
+ */
 export interface FormGroupProps {
 	class?: string
 	legend?: string

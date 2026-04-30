@@ -3,6 +3,20 @@ import type { Ref } from 'vue'
 import { computePosition } from '../primitives/position.ts'
 import type { Placement } from '../primitives/position.ts'
 
+/**
+ * A composable function that provides tooltip functionality. 
+ * It manages the visibility of the tooltip, handles showing and hiding the tooltip based on user interactions, 
+ * and positions the tooltip relative to a trigger element. 
+ * The tooltip can be customized with various options such as placement, offset, show and hide delays, and custom classes.
+ * 
+ * @interface TooltipOptions
+ * @interface TooltipReturn
+ * @function useTooltip
+ * @param trigger - The element that triggers the tooltip.
+ * @param options - An object containing configuration options for the tooltip.
+ * @returns An object with a reactive reference to the tooltip's visibility and a dispose method to clean up the tooltip.
+ */
+
 export interface TooltipOptions {
 	text: string
 	placement?: Placement
